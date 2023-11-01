@@ -1,6 +1,6 @@
 Publicar uma imagem no docker hub. Quando executarmos:
 
-docker run <seu-user>/fullcycle
+docker run matheuslss/fullcycle
 
 Temos que ter o seguinte resultado: Full Cycle Rocks!!
 
