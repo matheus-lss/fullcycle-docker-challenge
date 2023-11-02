@@ -14,7 +14,7 @@ Suba o projeto em um repositório Git remoto e coloque o link da imagem que subi
 
 https://hub.docker.com/r/matheuslss/fullcycle
 
-Desafio2 :
+Desafio 2:
 
 Quando um usuário acesse o nginx, o mesmo fará uma chamada em nossa aplicação node.js. Essa aplicação, por sua vez, adicionará um registro em nosso banco de dados mysql, cadastrando um nome na tabela people.
 
