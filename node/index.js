@@ -9,16 +9,32 @@ const config = {
   database: "nodedb",
 };
 
+const connection = mysql.createConnection(config);
+
+createTable(connection);
+
+insertPeople(connection);
+
 app.get("/", (req, res) => {
-  insertPeople(res);
+  getPeople(res, connection);
 });
 
 app.listen(port, () => {
   console.log("Rodando na porta " + port);
 });
 
-async function insertPeople(res) {
-  const connection = mysql.createConnection(config);
+function createTable(connection) {
+  const createTable = `CREATE TABLE IF NOT EXISTS people(
+    id int not null auto_increment,
+    name varchar(255),
+    primary key (id)
+  );`;
+
+  connection.query(createTable);
+  console.log("Tabela people criada com sucesso!");
+}
+
+async function insertPeople(connection) {
   const insert = `INSERT INTO people(name) VALUES 
   ('Emerson'),
   ('Maria'),
@@ -26,11 +42,10 @@ async function insertPeople(res) {
 
   connection.query(insert);
   console.log("Dados inserido no banco!");
-  getPeople(res, connection);
 }
 
 function getPeople(res, connection) {
-  const sql = `SELECT id, name FROM people`;
+  const sql = "SELECT id, name FROM people";
 
   connection.query(sql, (error, results, fields) => {
     if (error) {
