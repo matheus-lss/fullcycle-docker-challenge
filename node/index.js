@@ -11,8 +11,6 @@ const config = {
 
 const connection = mysql.createConnection(config);
 
-createTable(connection);
-
 insertPeople(connection);
 
 app.get("/", (req, res) => {
@@ -22,17 +20,6 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log("Rodando na porta " + port);
 });
-
-function createTable(connection) {
-  const createTable = `CREATE TABLE IF NOT EXISTS people(
-    id int not null auto_increment,
-    name varchar(255),
-    primary key (id)
-  );`;
-
-  connection.query(createTable);
-  console.log("Tabela people criada com sucesso!");
-}
 
 async function insertPeople(connection) {
   const insert = `INSERT INTO people(name) VALUES 
